@@ -1,0 +1,22 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "ONEp1 koppelen",
+                "description": "Voer je ONEp1 API key in. Deze vind je in het ONEp1 dashboard onder Instellingen > Home Assistant.",
+                "data": {
+                    "api_key": "API Key"
+                }
+            }
+        },
+        "error": {
+            "invalid_auth": "Ongeldige API key",
+            "no_subscription": "Actief abonnement vereist voor Home Assistant integratie",
+            "cannot_connect": "Kan geen verbinding maken met ONEp1 server",
+            "unknown": "Onbekende fout"
+        },
+        "abort": {
+            "already_configured": "ONEp1 is al geconfigureerd"
+        }
+    }
+}

@@ -1,0 +1,70 @@
+set_channel:
+  name: Kanaal instellen
+  description: Pas de instellingen van een ONEp1 kanaal aan
+  fields:
+    channel:
+      name: Kanaal
+      description: Kanaal nummer (0-3)
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 3
+          mode: box
+    active:
+      name: Actief
+      description: Kanaal aan of uit
+      selector:
+        boolean:
+    priority:
+      name: Prioriteit
+      description: Prioriteit (1-4, 1 = hoogste)
+      selector:
+        number:
+          min: 1
+          max: 4
+          mode: box
+    maxPower:
+      name: Max vermogen (kW)
+      description: Maximaal vermogen in kW
+      selector:
+        number:
+          min: 0
+          max: 25
+          step: 0.1
+          mode: box
+          unit_of_measurement: kW
+    reactionTime:
+      name: Reactietijd (s)
+      description: Reactietijd in seconden
+      selector:
+        number:
+          min: 1
+          max: 300
+          mode: box
+          unit_of_measurement: s
+    thresholdPower:
+      name: Surplus drempel (kW)
+      description: Minimaal surplus om te activeren
+      selector:
+        number:
+          min: 0
+          max: 10
+          step: 0.1
+          mode: box
+          unit_of_measurement: kW
+    isBattery:
+      name: Thuisaccu modus
+      description: Apparaat is een thuisaccu
+      selector:
+        boolean:
+    isMeter:
+      name: Meter modus
+      description: Apparaat is een energiemeter (passthrough)
+      selector:
+        boolean:
+    economicMode:
+      name: Economic mode
+      description: Schakel op basis van dynamische energieprijzen
+      selector:
+        boolean:

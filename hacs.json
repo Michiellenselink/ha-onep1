@@ -1,0 +1,8 @@
+{
+    "name": "ONEp1 Energie Manager",
+    "homeassistant": "2024.1.0",
+    "render_readme": true,
+    "content_in_root": false,
+    "filename": null,
+    "country": ["NL", "BE"]
+}
