@@ -6,7 +6,7 @@
     "dependencies": [],
     "documentation": "https://onep1.nl/kennisbank/home-assistant-integratie.html",
     "iot_class": "cloud_polling",
-    "issue_tracker": "https://github.com/Michiellenselink/ONEp1/issues",
+    "issue_tracker": "https://github.com/Michiellenselink/ha-onep1/issues",
     "requirements": ["aiohttp>=3.8.0"],
     "version": "1.0.0"
 }
