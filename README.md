@@ -8,7 +8,7 @@ Home Assistant custom integration voor de [ONEp1 Energie Manager](https://onep1.
 ## Features
 
 - **Real-time energiedata** — verbruik en teruglevering (kW, elke 10 seconden)
-- **Meterstanden** — totaal verbruik en teruglevering (kWh) + gas (m³) voor het HA Energie dashboard
+- **Meterstanden** — totaal verbruik en teruglevering (kWh) + gas en water (m³) voor het HA Energie dashboard
 - **4 kanaal sensoren** — status per uitgang met attributen (prioriteit, max vermogen, reactietijd, etc.)
 - **Kanaal bediening** — via `onep1.set_channel` service in automatiseringen
 - **HA Energie dashboard** — compatible sensoren voor import, export en gas
@@ -47,6 +47,7 @@ Na installatie verschijnen automatisch:
 | ONEp1 Verbruik Totaal | energy | kWh | Meterstand verbruik (voor Energie dashboard) |
 | ONEp1 Teruglevering Totaal | energy | kWh | Meterstand teruglevering (voor Energie dashboard) |
 | ONEp1 Gas | gas | m³ | Gasmeterstand (voor Energie dashboard) |
+| ONEp1 Water | water | m³ | Watermeterstand, alleen als er een slimme watermeter op de P1-poort zit (voor Energie dashboard) |
 | ONEp1 Kanaal 0-3 | - | - | Status per kanaal met attributen |
 
 ## Service: onep1.set_channel

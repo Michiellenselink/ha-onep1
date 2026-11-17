@@ -32,6 +32,12 @@ async def async_setup_entry(
         ONEp1GasSensor(coordinator, entry),
     ]
 
+    # Watermeter (via de P1-poort, naast of in plaats van gas): alleen als de server een
+    # waterstand meegeeft. Komt die er later bij, dan verschijnt de sensor na een herstart.
+    energy = (coordinator.data or {}).get("energy") or {}
+    if energy.get("water") is not None:
+        entities.append(ONEp1WaterSensor(coordinator, entry))
+
     # Always create 4 channel sensors with fixed names (user can rename in HA)
     device = None
     if coordinator.data and "devices" in coordinator.data:
@@ -169,6 +175,44 @@ class ONEp1GasSensor(CoordinatorEntity, SensorEntity):
             return None
         energy = self.coordinator.data["energy"]
         return energy.get("gas", 0)
+
+
+class ONEp1WaterSensor(CoordinatorEntity, SensorEntity):
+    """ONEp1 water sensor in m³ (for HA Energy dashboard, water consumption)."""
+
+    _attr_device_class = SensorDeviceClass.WATER
+    _attr_state_class = SensorStateClass.TOTAL_INCREASING
+    _attr_native_unit_of_measurement = UnitOfVolume.CUBIC_METERS
+    _attr_has_entity_name = True
+
+    def __init__(self, coordinator, entry):
+        """Initialize the sensor."""
+        super().__init__(coordinator)
+        self._attr_name = "ONEp1 Water"
+        self._attr_unique_id = f"onep1_{entry.entry_id}_water"
+
+    @property
+    def device_info(self):
+        """Return device info."""
+        device_id = None
+        if self.coordinator.data and "devices" in self.coordinator.data:
+            devices = self.coordinator.data["devices"]
+            if devices:
+                device_id = devices[0].get("deviceId")
+        return {
+            "identifiers": {(DOMAIN, device_id or self.coordinator.config_entry.entry_id)},
+            "name": "ONEp1 Energie Manager",
+            "manufacturer": "ONEev B.V.",
+            "model": "ONEp1 Dongle",
+            "configuration_url": "https://onep1.nl/dashboard.html",
+        }
+
+    @property
+    def native_value(self):
+        """Return the state in m³ (None = no water reading)."""
+        if not self.coordinator.data or "energy" not in self.coordinator.data:
+            return None
+        return self.coordinator.data["energy"].get("water")
 
 
 class ONEp1ChannelSensor(CoordinatorEntity, SensorEntity):
