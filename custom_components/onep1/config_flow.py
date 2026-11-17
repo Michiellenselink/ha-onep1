@@ -1,11 +1,13 @@
 """Config flow for ONEp1 integration."""
 
+import asyncio
 import logging
 
 import aiohttp
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import CONF_API_KEY, API_BASE_URL, DOMAIN
 
@@ -14,12 +16,12 @@ _LOGGER = logging.getLogger(__name__)
 
 async def validate_api_key(hass: HomeAssistant, api_key: str) -> dict:
     """Validate the API key by making a test request."""
-    async with aiohttp.ClientSession() as session:
-        headers = {"x-api-key": api_key}
+    session = async_get_clientsession(hass)
+    try:
         async with session.get(
-            f"{API_BASE_URL}/power",
-            headers=headers,
-            timeout=aiohttp.ClientTimeout(total=10),
+            f"{API_BASE_URL}/v2/state",
+            headers={"x-api-key": api_key},
+            timeout=aiohttp.ClientTimeout(total=15),
         ) as response:
             if response.status == 401:
                 raise InvalidAuth
@@ -27,8 +29,9 @@ async def validate_api_key(hass: HomeAssistant, api_key: str) -> dict:
                 raise NoSubscription
             if response.status != 200:
                 raise CannotConnect
-            data = await response.json()
-            return data
+            return await response.json()
+    except (aiohttp.ClientError, asyncio.TimeoutError) as err:
+        raise CannotConnect from err
 
 
 class ONEp1ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):

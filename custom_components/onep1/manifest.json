@@ -1,12 +1,14 @@
 {
     "domain": "onep1",
     "name": "ONEp1 Energie Manager",
-    "codeowners": ["@Michiellenselink"],
+    "codeowners": [
+        "@Michiellenselink"
+    ],
     "config_flow": true,
     "dependencies": [],
     "documentation": "https://onep1.nl/kennisbank/home-assistant-integratie.html",
     "iot_class": "cloud_polling",
     "issue_tracker": "https://github.com/Michiellenselink/ha-onep1/issues",
     "requirements": [],
-    "version": "1.1.0"
+    "version": "1.2.0"
 }

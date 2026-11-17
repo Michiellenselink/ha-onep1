@@ -11,6 +11,12 @@ set_channel:
           min: 0
           max: 3
           mode: box
+    meter:
+      name: ONEp1 (koppelcode)
+      description: Koppelcode van de ONEp1. Leeg = de eerste ONEp1 van je account.
+      required: false
+      selector:
+        text:
     active:
       name: Actief
       description: Kanaal aan of uit
