@@ -1,9 +1,9 @@
 # ONEp1 - Home Assistant Integration
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
 [![GitHub Release](https://img.shields.io/github/v/release/Michiellenselink/ha-onep1)](https://github.com/Michiellenselink/ha-onep1/releases)
 
-Home Assistant custom integration voor de [ONEp1 Energie Manager](https://onep1.nl) - slimme P1 meter dongle met 4-poorts multiplexer voor het aansturen van apparaten op zonne-energie overschot en dynamische energieprijzen.
+Home Assistant-integratie (via HACS) voor de [ONEp1 Energie Manager](https://onep1.nl) - slimme P1 meter dongle met 4-poorts multiplexer voor het aansturen van apparaten op zonne-energie overschot en dynamische energieprijzen.
 
 ## Features
 
@@ -11,18 +11,20 @@ Home Assistant custom integration voor de [ONEp1 Energie Manager](https://onep1.
 - **Meterstanden** — totaal verbruik en teruglevering (kWh) + gas en water (m³) voor het HA Energie dashboard
 - **4 kanaal sensoren** — status per uitgang met attributen (prioriteit, max vermogen, reactietijd, etc.)
 - **Kanaal bediening** — via `onep1.set_channel` service in automatiseringen
-- **HA Energie dashboard** — compatible sensoren voor import, export en gas
+- **HA Energie dashboard** — compatible sensoren voor import, export, gas en water
 - **UI configuratie** — instellen via Instellingen > Integraties (geen YAML nodig)
 
 ## Installatie
 
 ### Via HACS (aanbevolen)
 
+ONEp1 staat in de standaardlijst van HACS. Je hoeft de repository dus niet zelf toe te voegen.
+
 1. Open **HACS** in Home Assistant
-2. Ga naar **Integraties** → menu (⋮) → **Custom repositories**
-3. Voeg toe: `https://github.com/Michiellenselink/ha-onep1` | Categorie: **Integration**
-4. Zoek **"ONEp1"** en klik **Download**
-5. **Herstart** Home Assistant
+2. Zoek **"ONEp1"** en klik **Download**
+3. **Herstart** Home Assistant
+
+> Vind je ONEp1 niet (oudere HACS-versie)? Voeg dan via **HACS** → menu (⋮) → **Custom repositories** de repository `https://github.com/Michiellenselink/ha-onep1` toe, categorie **Integration**.
 
 ### Handmatig
 
